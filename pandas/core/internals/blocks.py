@@ -924,11 +924,11 @@ class Block(PandasObject):
             # otherwise should have _can_hold_element
 
             return self.astype(dtype).setitem(indexer, value)
-
-        if self.dtype.kind in ["m", "M"]:
-            arr = self.array_values().T
-            arr[indexer] = value
-            return self
+        else:
+            if self.dtype.kind in ["m", "M"]:
+                arr = self.array_values().T
+                arr[indexer] = value
+                return self
 
         # value must be storable at this moment
         if is_extension_array_dtype(getattr(value, "dtype", None)):
