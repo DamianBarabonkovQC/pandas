@@ -1820,10 +1820,10 @@ class _iLocIndexer(_LocationIndexer):
             and not is_empty_indexer(pi, value)
         ):
             if is_list_like(pi):
-                ser = value[np.argsort(pi)]
+                ser.update(value[np.argsort(pi)])
             else:
                 # in case of slice
-                ser = value[pi]
+                ser.update(value[pi])
         else:
             # set the item, possibly having a dtype change
             ser = ser.copy()
